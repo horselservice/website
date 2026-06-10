@@ -1,0 +1,40 @@
+{
+  "name": "client-side-code-horselservice",
+  "version": "1.0.0",
+  "description": "To make it easy for you to get started with GitLab, here's a list of recommended next steps.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "set NODE_ENV=production&& node server.js",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.lnu.se:1dv613/student/as223js/projects/client-side-code-horselservice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookies-next": "^2.1.1",
+    "express-rate-limit": "^6.7.0",
+    "express-validator": "^7.0.1",
+    "joi": "^17.9.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.1.0",
+    "next": "^13.4.12",
+    "node-mocks-http": "^1.12.2",
+    "nodemailer": "^6.9.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-toastify": "^9.1.2",
+    "sharp": "^0.32.6",
+    "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.5.0",
+    "eslint-config-next": "13.3.1",
+    "nock": "^13.3.1"
+  }
+}

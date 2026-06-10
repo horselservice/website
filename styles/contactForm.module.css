@@ -1,0 +1,132 @@
+.contactGrid {
+  display: grid;
+  gap: 1rem;
+  align-items: start;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  color: var(--purple);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  margin: 0;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+}
+
+.infoText,
+.formLabel,
+.input,
+.textarea {
+  color: var(--ink-soft);
+}
+
+.infoText {
+  line-height: 1.75;
+}
+
+.contactInfoList {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+}
+
+.contactInfoCard {
+  padding: 1rem;
+  border-radius: 22px;
+  background: rgba(124,58,237,0.08);
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.contactInfoCard strong {
+  display: block;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+
+.formCard {
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: 28px;
+  padding: 1.25rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.formGroup {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.formLabel {
+  font-weight: 600;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid #e6dcf6;
+  background: #f8f4fd;
+  border-radius: 18px;
+  padding: 0.95rem 1rem;
+}
+
+.textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 4px rgba(45,212,191,0.15);
+}
+
+.formActions {
+  display: flex;
+  justify-content: right;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.darkButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.85rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 600;
+  background: #111111;
+  color: white;
+  border: 0;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.darkButton:hover,
+.darkButton:focus-visible {
+  background: var(--teal);
+  color: #062c2a;
+  transform: translateY(-1px);
+}
+
+.errorText {
+  color: #b42318;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 900px) {
+  .contactGrid {
+    grid-template-columns: 1.08fr 0.92fr;
+  }
+}

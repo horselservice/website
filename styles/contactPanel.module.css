@@ -1,0 +1,120 @@
+.contactStrip {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow);
+  background: linear-gradient(180deg, #ffffff 0%, #faf7fe 100%);
+  color: var(--ink);
+  padding: 1.25rem;
+}
+
+.contactGrid {
+  display: grid;
+  gap: 1rem;
+  background: linear-gradient(180deg, #ffffff 0%, #faf7fe 100%);
+  color: var(--ink);
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  color: var(--purple);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  margin: 0;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+}
+
+.infoText {
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.25rem;
+}
+
+.darkButton,
+.ghostButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.85rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.darkButton {
+  background: #111111;
+  color: white;
+  border: 0;
+}
+
+.darkButton:hover,
+.darkButton:focus-visible {
+  background: var(--teal);
+  color: #062c2a;
+  transform: translateY(-1px);
+}
+
+.ghostButton {
+  background: white;
+  color: #111111;
+  border: 1px solid #ddd1f2;
+}
+
+.ghostButton:hover,
+.ghostButton:focus-visible {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #062c2a;
+}
+
+.formCard {
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: 28px;
+  padding: 1.25rem;
+}
+
+.contactInfoList {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.contactInfoCard {
+  padding: 1rem;
+  border-radius: 22px;
+  background: rgba(124,58,237,0.08);
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.contactInfoCard strong {
+  display: block;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+
+@media (min-width: 900px) {
+  .contactStrip {
+    padding: 2rem;
+  }
+
+  .contactGrid {
+    grid-template-columns: 1.08fr 0.92fr;
+    align-items: start;
+  }
+}

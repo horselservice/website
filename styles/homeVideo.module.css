@@ -1,0 +1,164 @@
+.videoSection {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  height: 92vh;
+  overflow: hidden;
+  background: #050505;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.58) 0%,
+      rgba(0, 0, 0, 0.28) 45%,
+      rgba(0, 0, 0, 0.14) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.42) 0%,
+      rgba(0, 0, 0, 0.08) 42%,
+      rgba(0, 0, 0, 0.65) 100%
+    );
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: 7rem 1.5rem 6rem;
+}
+
+.title {
+  width: min(900px, 100%);
+  margin: 0 auto;
+  color: white;
+  font-size: clamp(2.4rem, 6vw, 5.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.06em;
+  text-align: center;
+  text-wrap: balance;
+  text-shadow: 0 20px 70px rgba(0, 0, 0, 0.65);
+}
+
+.scrollButton {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 3;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
+}
+
+.scrollText {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+}
+
+.scrollMouse {
+  display: block;
+  width: 1.5rem;
+  height: 2.5rem;
+  margin-top: 0.5rem;
+  padding: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+}
+
+.scrollDot {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: 0 auto;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  animation: scrollDot 1.6s ease-in-out infinite;
+}
+
+.scrollButton:hover,
+.scrollButton:focus-visible {
+  color: var(--teal);
+}
+
+.scrollButton:hover .scrollMouse,
+.scrollButton:focus-visible .scrollMouse {
+  border-color: var(--teal);
+}
+
+.scrollButton:hover .scrollDot,
+.scrollButton:focus-visible .scrollDot {
+  background: var(--teal);
+}
+
+@keyframes scrollDot {
+  0% {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translateY(0.8rem);
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 768px) {
+  .videoSection {
+    height: 620px;
+  }
+
+  .content {
+    align-items: center;
+    padding: 6rem 1rem 6rem;
+  }
+
+  .title {
+    font-size: clamp(2.2rem, 11vw, 4rem);
+    line-height: 1;
+  }
+
+  .scrollButton {
+    bottom: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .videoSection {
+    height: 560px;
+  }
+
+  .title {
+    font-size: clamp(2rem, 12vw, 3.3rem);
+  }
+
+  .scrollText {
+    font-size: 10px;
+  }
+}
