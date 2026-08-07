@@ -14,20 +14,30 @@ export default function AdminPage() {
     useState(true);
 
   useEffect(() => {
-    let isMounted = true;
+  let isMounted = true;
 
-    async function checkSession() {
+  async function checkAdminAccess() {
+    try {
       const supabase =
         createSupabaseBrowserClient();
 
       const {
         data: { session },
-      } = await supabase.auth.getSession();
+        error: sessionError,
+      } =
+        await supabase.auth.getSession();
+
+      if (sessionError) {
+        throw sessionError;
+      }
 
       if (!isMounted) {
         return;
       }
 
+      /*
+       * Inte inloggad.
+       */
       if (!session) {
         await router.replace(
           "/admin/login"
@@ -36,19 +46,74 @@ export default function AdminPage() {
         return;
       }
 
+      const {
+        data: aalData,
+        error: aalError,
+      } =
+        await supabase.auth.mfa
+          .getAuthenticatorAssuranceLevel();
+
+      if (aalError) {
+        throw aalError;
+      }
+
+      if (!isMounted) {
+        return;
+      }
+
+      /*
+       * Inloggad med lösenord men ingen MFA registrerad.
+       */
+      if (
+        aalData.nextLevel !== "aal2"
+      ) {
+        await router.replace(
+          "/admin/mfa/setup"
+        );
+
+        return;
+      }
+
+      /*
+       * MFA finns registrerat men inte verifierat för denna sessionen.
+       */
+      if (
+        aalData.currentLevel !== "aal2"
+      ) {
+        await router.replace(
+          "/admin/mfa"
+        );
+
+        return;
+      }
+
+      /*
+       * Användare inloggad.
+       */
+
       setEmail(
         session.user.email ?? ""
       );
 
       setIsLoading(false);
+    } catch (error) {
+      console.error(
+        "Admin authentication failed:",
+        error
+      );
+
+      await router.replace(
+        "/admin/login"
+      );
     }
+  }
 
-    checkSession();
+  checkAdminAccess();
 
-    return () => {
-      isMounted = false;
-    };
-  }, [router]);
+  return () => {
+    isMounted = false;
+  };
+}, [router]);
 
   async function handleLogout() {
     const supabase =

@@ -69,7 +69,17 @@ export default function LoginForm() {
 
             // nextLevel === "aal2": användaren har redan en verifierad MFA
             // nextLevel === "aal1": användaren har ännu ingen verifierad faktor och ska registrera en autentiseringsapp.
-            if (aalData.nextLevel === "aal2") {
+            if (
+                aalData.currentLevel === "aal2"
+            ) {
+                await router.replace("/admin");
+                return;
+            }
+
+            if (
+                aalData.currentLevel === "aal1" &&
+                aalData.nextLevel === "aal2"
+            ) {
                 await router.replace("/admin/mfa");
                 return;
             }
