@@ -11,8 +11,16 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at top right, rgba(45, 212, 191, 0.16), transparent 22%),
-    radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.08), transparent 24%),
+    radial-gradient(
+      circle at top right,
+      rgba(45, 212, 191, 0.16),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(255, 255, 255, 0.08),
+      transparent 24%
+    ),
     linear-gradient(
       135deg,
       rgba(17, 17, 17, 0.44) 0%,

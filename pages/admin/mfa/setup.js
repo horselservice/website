@@ -6,14 +6,9 @@ export default function AdminMfaSetupPage() {
   return (
     <>
       <Head>
-        <title>
-          Aktivera MFA | Hörselservice
-        </title>
+        <title>Aktivera MFA | Hörselservice</title>
 
-        <meta
-          name="robots"
-          content="noindex, nofollow"
-        />
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
 
       <main>

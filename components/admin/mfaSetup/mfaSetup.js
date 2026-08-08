@@ -1,40 +1,26 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
-import {
-  createSupabaseBrowserClient,
-} from "../../../lib/supabase/browserClient";
+import { createSupabaseBrowserClient } from "../../../lib/supabase/browserClient";
 
 export default function MfaSetup() {
   const router = useRouter();
 
-  const [factorId, setFactorId] =
-    useState("");
+  const [factorId, setFactorId] = useState("");
 
-  const [qrCode, setQrCode] =
-    useState("");
+  const [qrCode, setQrCode] = useState("");
 
-  const [secret, setSecret] =
-    useState("");
+  const [secret, setSecret] = useState("");
 
-  const [code, setCode] =
-    useState("");
+  const [code, setCode] = useState("");
 
-  const [errorMessage, setErrorMessage] =
-    useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const [isLoading, setIsLoading] =
-    useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [isVerifying, setIsVerifying] =
-    useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
 
-  const enrollmentStarted =
-    useRef(false);
+  const enrollmentStarted = useRef(false);
 
   useEffect(() => {
     if (enrollmentStarted.current) {
@@ -45,27 +31,19 @@ export default function MfaSetup() {
 
     async function startEnrollment() {
       try {
-        const supabase =
-          createSupabaseBrowserClient();
+        const supabase = createSupabaseBrowserClient();
 
         const {
           data: { session },
-        } =
-          await supabase.auth.getSession();
+        } = await supabase.auth.getSession();
 
         if (!session) {
-          await router.replace(
-            "/admin/login"
-          );
+          await router.replace("/admin/login");
           return;
         }
 
-        const {
-          data: aalData,
-          error: aalError,
-        } =
-          await supabase.auth.mfa
-            .getAuthenticatorAssuranceLevel();
+        const { data: aalData, error: aalError } =
+          await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
 
         if (aalError) {
           throw aalError;
@@ -75,24 +53,15 @@ export default function MfaSetup() {
          * Användare har redan MFA
          * registrerad.
          */
-        if (
-          aalData.nextLevel === "aal2"
-        ) {
-          await router.replace(
-            "/admin/mfa"
-          );
+        if (aalData.nextLevel === "aal2") {
+          await router.replace("/admin/mfa");
           return;
         }
 
-        const {
-          data,
-          error,
-        } =
-          await supabase.auth.mfa.enroll({
-            factorType: "totp",
-            friendlyName:
-              "Hörselservice Admin",
-          });
+        const { data, error } = await supabase.auth.mfa.enroll({
+          factorType: "totp",
+          friendlyName: "Hörselservice Admin",
+        });
 
         if (error) {
           throw error;
@@ -100,22 +69,13 @@ export default function MfaSetup() {
 
         setFactorId(data.id);
 
-        setQrCode(
-          data.totp.qr_code
-        );
+        setQrCode(data.totp.qr_code);
 
-        setSecret(
-          data.totp.secret
-        );
+        setSecret(data.totp.secret);
       } catch (error) {
-        console.error(
-          "MFA enrollment failed:",
-          error
-        );
+        console.error("MFA enrollment failed:", error);
 
-        setErrorMessage(
-          "Det gick inte att starta MFA-registreringen."
-        );
+        setErrorMessage("Det gick inte att starta MFA-registreringen.");
       } finally {
         setIsLoading(false);
       }
@@ -127,20 +87,14 @@ export default function MfaSetup() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    if (
-      isVerifying ||
-      !factorId
-    ) {
+    if (isVerifying || !factorId) {
       return;
     }
 
-    const normalizedCode =
-      code.replace(/\s/g, "");
+    const normalizedCode = code.replace(/\s/g, "");
 
     if (!/^\d{6}$/.test(normalizedCode)) {
-      setErrorMessage(
-        "Ange den sexsiffriga koden från autentiseringsappen."
-      );
+      setErrorMessage("Ange den sexsiffriga koden från autentiseringsappen.");
 
       return;
     }
@@ -149,70 +103,48 @@ export default function MfaSetup() {
       setIsVerifying(true);
       setErrorMessage("");
 
-      const supabase =
-        createSupabaseBrowserClient();
+      const supabase = createSupabaseBrowserClient();
 
-      const {
-        error,
-      } =
-        await supabase.auth.mfa
-          .challengeAndVerify({
-            factorId,
-            code: normalizedCode,
-          });
+      const { error } = await supabase.auth.mfa.challengeAndVerify({
+        factorId,
+        code: normalizedCode,
+      });
 
       if (error) {
         setErrorMessage(
-          "Koden är inte giltig. Kontrollera koden och försök igen."
+          "Koden är inte giltig. Kontrollera koden och försök igen.",
         );
 
         return;
       }
 
-      await router.replace(
-        "/admin"
-      );
+      await router.replace("/admin");
     } catch (error) {
-      console.error(
-        "MFA verification failed:",
-        error
-      );
+      console.error("MFA verification failed:", error);
 
-      setErrorMessage(
-        "Det gick inte att verifiera koden."
-      );
+      setErrorMessage("Det gick inte att verifiera koden.");
     } finally {
       setIsVerifying(false);
     }
   }
 
   if (isLoading) {
-    return (
-      <p role="status">
-        Förbereder tvåstegsverifiering...
-      </p>
-    );
+    return <p role="status">Förbereder tvåstegsverifiering...</p>;
   }
 
   if (!factorId) {
     return (
-      <div role="alert">
-        {errorMessage ||
-          "MFA kunde inte förberedas."}
-      </div>
+      <div role="alert">{errorMessage || "MFA kunde inte förberedas."}</div>
     );
   }
 
   return (
     <div>
-      <h2>
-        Aktivera tvåstegsverifiering
-      </h2>
+      <h2>Aktivera tvåstegsverifiering</h2>
 
       <p>
-        Skanna QR-koden med exempelvis
-        Microsoft Authenticator eller
-        Google Authenticator.
+        Skanna QR-koden med exempelvis Microsoft Authenticator eller Google
+        Authenticator.
       </p>
 
       {qrCode ? (
@@ -227,21 +159,15 @@ export default function MfaSetup() {
       {secret ? (
         <div>
           <p>
-            Om du inte kan skanna QR-koden
-            kan du skriva in denna kod
-            manuellt:
+            Om du inte kan skanna QR-koden kan du skriva in denna kod manuellt:
           </p>
 
-          <code>
-            {secret}
-          </code>
+          <code>{secret}</code>
         </div>
       ) : null}
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="totp-setup-code">
-          Kod från autentiseringsappen
-        </label>
+        <label htmlFor="totp-setup-code">Kod från autentiseringsappen</label>
 
         <input
           id="totp-setup-code"
@@ -250,31 +176,15 @@ export default function MfaSetup() {
           autoComplete="one-time-code"
           maxLength={6}
           value={code}
-          onChange={(event) =>
-            setCode(
-              event.target.value.replace(
-                /\D/g,
-                ""
-              )
-            )
-          }
+          onChange={(event) => setCode(event.target.value.replace(/\D/g, ""))}
           disabled={isVerifying}
           required
         />
 
-        {errorMessage ? (
-          <p role="alert">
-            {errorMessage}
-          </p>
-        ) : null}
+        {errorMessage ? <p role="alert">{errorMessage}</p> : null}
 
-        <button
-          type="submit"
-          disabled={isVerifying}
-        >
-          {isVerifying
-            ? "Verifierar..."
-            : "Aktivera MFA"}
+        <button type="submit" disabled={isVerifying}>
+          {isVerifying ? "Verifierar..." : "Aktivera MFA"}
         </button>
       </form>
     </div>

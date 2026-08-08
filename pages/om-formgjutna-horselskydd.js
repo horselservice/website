@@ -9,15 +9,33 @@ export default function OmFormgjutnaHorselskydd() {
     <>
       <Head>
         <title>Om formgjutna hörselskydd | Komfort och ljudkvalitet</title>
-        <meta name="description" content="Lär dig mer om formgjutna hörselskydd, individuell passform, filter, komfort och när formgjutna öronproppar är ett bra val." />
+        <meta
+          name="description"
+          content="Lär dig mer om formgjutna hörselskydd, individuell passform, filter, komfort och när formgjutna öronproppar är ett bra val."
+        />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://horselservice.se/om-formgjutna-horselskydd" />
+        <link
+          rel="canonical"
+          href="https://horselservice.se/om-formgjutna-horselskydd"
+        />
         <meta property="og:locale" content="sv_SE" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Om formgjutna hörselskydd | Komfort och ljudkvalitet" />
-        <meta property="og:description" content="Lär dig mer om formgjutna hörselskydd, individuell passform, filter, komfort och när formgjutna öronproppar är ett bra val." />
-        <meta property="og:url" content="https://horselservice.se/om-formgjutna-horselskydd" />
-        <meta property="og:image" content="https://horselservice.se/images/horselskydd.webp" />
+        <meta
+          property="og:title"
+          content="Om formgjutna hörselskydd | Komfort och ljudkvalitet"
+        />
+        <meta
+          property="og:description"
+          content="Lär dig mer om formgjutna hörselskydd, individuell passform, filter, komfort och när formgjutna öronproppar är ett bra val."
+        />
+        <meta
+          property="og:url"
+          content="https://horselservice.se/om-formgjutna-horselskydd"
+        />
+        <meta
+          property="og:image"
+          content="https://horselservice.se/images/horselskydd.webp"
+        />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
@@ -33,7 +51,13 @@ export default function OmFormgjutnaHorselskydd() {
           secondaryLabel="Se produkter"
           right={
             <div className={styles.mediaCard} style={{ position: "relative" }}>
-              <Image src={formgjutetHorselskydd} alt="Formgjutet hörselskydd" fill className={styles.mediaImage} sizes="(max-width: 900px) 100vw, 50vw" />
+              <Image
+                src={formgjutetHorselskydd}
+                alt="Formgjutet hörselskydd"
+                fill
+                className={styles.mediaImage}
+                sizes="(max-width: 900px) 100vw, 50vw"
+              />
             </div>
           }
         />

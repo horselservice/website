@@ -17,7 +17,11 @@ export default function ProductCard({
 
   return (
     <article className={styles.productCard}>
-      <Link href={href} className={styles.cardLink} aria-label={`Visa produkten ${title}`}>
+      <Link
+        href={href}
+        className={styles.cardLink}
+        aria-label={`Visa produkten ${title}`}
+      >
         <div className={styles.productImageWrap}>
           <Image
             src={image}

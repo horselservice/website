@@ -2,14 +2,24 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import { getAllSoundfieldProductSlugs, getSoundfieldProductBySlug } from "../../lib/ljudutjamningssystem/products";
+import {
+  getAllSoundfieldProductSlugs,
+  getSoundfieldProductBySlug,
+} from "../../lib/ljudutjamningssystem/products";
 import { usePrice } from "../../context/priceContext";
-import { getDisplayPrice, getOfferPriceNumber, getRentDisplayPrice } from "../../lib/pricing";
+import {
+  getDisplayPrice,
+  getOfferPriceNumber,
+  getRentDisplayPrice,
+} from "../../lib/pricing";
 import styles from "../../styles/site.module.css";
 
 export async function getStaticPaths() {
   const slugs = await getAllSoundfieldProductSlugs();
-  return { paths: slugs.map((slug) => ({ params: { slug } })), fallback: false };
+  return {
+    paths: slugs.map((slug) => ({ params: { slug } })),
+    fallback: false,
+  };
 }
 
 export async function getStaticProps({ params }) {
@@ -29,14 +39,26 @@ export default function SoundfieldProductPage({ product }) {
       <Head>
         <title>{product.title} | Ljudutjämningssystem</title>
         <meta name="description" content={product.description} />
-        <link rel="canonical" href={`https://horselservice.se/ljudutjamningssystem/${product.slug}`} />
+        <link
+          rel="canonical"
+          href={`https://horselservice.se/ljudutjamningssystem/${product.slug}`}
+        />
         <meta name="robots" content="index, follow" />
         <meta property="og:locale" content="sv_SE" />
         <meta property="og:type" content="product" />
-        <meta property="og:title" content={`${product.title} | Hörselservice`} />
+        <meta
+          property="og:title"
+          content={`${product.title} | Hörselservice`}
+        />
         <meta property="og:description" content={product.description} />
-        <meta property="og:url" content={`https://horselservice.se/ljudutjamningssystem/${product.slug}`} />
-        <meta property="og:image" content={`https://horselservice.se${product.imgSrc}`} />
+        <meta
+          property="og:url"
+          content={`https://horselservice.se/ljudutjamningssystem/${product.slug}`}
+        />
+        <meta
+          property="og:image"
+          content={`https://horselservice.se${product.imgSrc}`}
+        />
       </Head>
 
       <Script id="product-jsonld" type="application/ld+json">
@@ -65,17 +87,32 @@ export default function SoundfieldProductPage({ product }) {
                 <div className={styles.eyebrow}>Ljudutjämningssystem</div>
                 <h1 className={styles.detailTitle}>{product.title}</h1>
                 <p className={styles.sectionText}>
-                  {product.description} Systemet är inte bara en vanlig höjning av ljudet, utan skapar också bättre tydlighet och lyssningskomfort i hela rummet.
+                  {product.description} Systemet är inte bara en vanlig höjning
+                  av ljudet, utan skapar också bättre tydlighet och
+                  lyssningskomfort i hela rummet.
                 </p>
                 <div className={styles.buttonRow}>
-                  <Link href="/kontakt" className={styles.primaryButton}>Kontakta oss</Link>
-                  <Link href="/ljudutjamningssystem" className={styles.secondaryButton}>Tillbaka</Link>
+                  <Link href="/kontakt" className={styles.primaryButton}>
+                    Kontakta oss
+                  </Link>
+                  <Link
+                    href="/ljudutjamningssystem"
+                    className={styles.secondaryButton}
+                  >
+                    Tillbaka
+                  </Link>
                 </div>
               </div>
 
               <div className={styles.detailCard}>
                 <div className={styles.detailImage}>
-                  <Image src={product.imgSrc} alt={product.imgAlt} fill sizes="(max-width: 900px) 100vw, 50vw" className={styles.productImage} />
+                  <Image
+                    src={product.imgSrc}
+                    alt={product.imgAlt}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                    className={styles.productImage}
+                  />
                 </div>
                 <div className={styles.metaGrid}>
                   <div className={styles.metric}>
@@ -88,7 +125,9 @@ export default function SoundfieldProductPage({ product }) {
                   </div>
                   <div className={styles.metric}>
                     <div className={styles.metricTitle}>Användning</div>
-                    <div className={styles.productMeta}>Skola, möten och offentliga lokaler</div>
+                    <div className={styles.productMeta}>
+                      Skola, möten och offentliga lokaler
+                    </div>
                   </div>
                 </div>
               </div>

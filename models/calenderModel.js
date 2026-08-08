@@ -1,6 +1,6 @@
-import { Schema, model, models } from 'mongoose'
+import { Schema, model, models } from "mongoose";
 
-const calenderSchema = new Schema ({
+const calenderSchema = new Schema({
   timeOne: {
     value: {
       type: String,
@@ -33,7 +33,7 @@ const calenderSchema = new Schema ({
   },
   weekday: {
     type: String,
-    required:true,
+    required: true,
   },
   day: {
     type: String,
@@ -50,9 +50,9 @@ const calenderSchema = new Schema ({
   available: {
     type: Boolean,
     required: true,
-  }
-})
+  },
+});
 
-const CalenderDay = models.CalenderDay || model('CalenderDay', calenderSchema)
+const CalenderDay = models.CalenderDay || model("CalenderDay", calenderSchema);
 
-export default CalenderDay
+export default CalenderDay;

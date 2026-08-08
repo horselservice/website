@@ -1,0 +1,154 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.toolbar h2 {
+  margin: 0 0 0.35rem;
+}
+
+.toolbar p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.searchField {
+  width: min(100%, 320px);
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.searchField input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid #d9d5df;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  outline: none;
+}
+
+.searchField input:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+.productList {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.productRow {
+  min-height: 105px;
+  padding: 0.75rem 1rem 0.75rem 0.75rem;
+  display: grid;
+  grid-template-columns: 85px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #e3dfe8;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--ink);
+  text-decoration: none;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.productRow:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(38, 24, 55, 0.08);
+}
+
+.image {
+  width: 85px;
+  height: 80px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #eeeaf2;
+  color: var(--ink-soft);
+  font-size: 0.7rem;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  min-width: 0;
+  display: grid;
+  justify-items: start;
+  gap: 0.3rem;
+}
+
+.category {
+  color: var(--purple);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.published,
+.hidden {
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.published {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.hidden {
+  background: #f1f0f2;
+  color: #5e5666;
+}
+
+.edit {
+  color: var(--purple);
+  font-weight: 800;
+}
+
+.error {
+  padding: 1rem;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  background: #fff1f2;
+  color: #991b1b;
+}
+
+@media (max-width: 700px) {
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .searchField {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .productRow {
+    grid-template-columns: 70px 1fr;
+  }
+
+  .image {
+    width: 70px;
+    height: 70px;
+  }
+
+  .edit {
+    display: none;
+  }
+}

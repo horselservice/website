@@ -24,14 +24,15 @@ const productCategories = [
       {
         href: "/products/formgjutna-horselskydd-musik",
         title: "Musik och tal",
-        description: "Dämpar ljudnivån men bevarar ljudkvaliteten för tal och musik.",
+        description:
+          "Dämpar ljudnivån men bevarar ljudkvaliteten för tal och musik.",
         image: "/images/musik.webp",
       },
       {
         href: "/products/formgjutna-horselskydd-jakt",
         title: "Jakt",
         description: "För kraftiga ljudnivåer samtidigt som tal släpps igenom.",
-        image: "/images/jakt.webp"
+        image: "/images/jakt.webp",
       },
     ],
   },
@@ -46,7 +47,8 @@ const productCategories = [
       {
         href: "/bluetooth-products/eartech-active-pro",
         title: "HA Active Pro",
-        description: "Aktivt hörselskydd för jakt med förstärkning av tal och svaga ljud.",
+        description:
+          "Aktivt hörselskydd för jakt med förstärkning av tal och svaga ljud.",
         image: "/images/jagare.webp",
       },
       {
@@ -68,13 +70,15 @@ const productCategories = [
       {
         href: "/ljudutjamningssystem/phonak-roger-soundfield-5000",
         title: "Roger Soundfield 5000 V2",
-        description: "För mindre lokaler där tydligt tal och delaktighet är viktigt.",
+        description:
+          "För mindre lokaler där tydligt tal och delaktighet är viktigt.",
         image: "/images/rogerSpeaker.webp",
       },
       {
         href: "/ljudutjamningssystem/phonak-roger-soundfield-7000",
         title: "Roger Soundfield 7000 V2",
-        description: "För större rum och verksamheter med högre krav på räckvidd.",
+        description:
+          "För större rum och verksamheter med högre krav på räckvidd.",
         image: "/images/rogerSpeaker.webp",
       },
     ],
@@ -97,22 +101,40 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ featuredProducts, bluetoothProduct, soundfieldProduct }) {
+export default function Home({
+  featuredProducts,
+  bluetoothProduct,
+  soundfieldProduct,
+}) {
   const { customerType } = usePrice();
 
   return (
     <>
       <Head>
-        <title>Hörselservice Växjö | Formgjutna hörselskydd och ljudutjämningssystem</title>
-        <meta name="description" content="Hörselservice i Kronoberg erbjuder formgjutna hörselskydd, aktiva hörselskydd och ljudutjämningssystem med personlig rådgivning i Växjö." />
+        <title>
+          Hörselservice Växjö | Formgjutna hörselskydd och ljudutjämningssystem
+        </title>
+        <meta
+          name="description"
+          content="Hörselservice i Kronoberg erbjuder formgjutna hörselskydd, aktiva hörselskydd och ljudutjämningssystem med personlig rådgivning i Växjö."
+        />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://horselservice.se/" />
         <meta property="og:locale" content="sv_SE" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Hörselservice Växjö | Formgjutna hörselskydd och ljudutjämningssystem" />
-        <meta property="og:description" content="Hörselservice i Kronoberg erbjuder formgjutna hörselskydd, aktiva hörselskydd och ljudutjämningssystem med personlig rådgivning i Växjö." />
+        <meta
+          property="og:title"
+          content="Hörselservice Växjö | Formgjutna hörselskydd och ljudutjämningssystem"
+        />
+        <meta
+          property="og:description"
+          content="Hörselservice i Kronoberg erbjuder formgjutna hörselskydd, aktiva hörselskydd och ljudutjämningssystem med personlig rådgivning i Växjö."
+        />
         <meta property="og:url" content="https://horselservice.se/" />
-        <meta property="og:image" content="https://horselservice.se/images/passformHorselskydd.webp" />
+        <meta
+          property="og:image"
+          content="https://horselservice.se/images/passformHorselskydd.webp"
+        />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
@@ -129,8 +151,8 @@ export default function Home({ featuredProducts, bluetoothProduct, soundfieldPro
             </div>
 
             <div className={styles.infoText}>
-              Hitta rätt lösning utifrån behov: passiva hörselskydd, aktiva hörselskydd
-              eller ljudutjämningssystem.
+              Hitta rätt lösning utifrån behov: passiva hörselskydd, aktiva
+              hörselskydd eller ljudutjämningssystem.
             </div>
           </div>
 
@@ -143,10 +165,16 @@ export default function Home({ featuredProducts, bluetoothProduct, soundfieldPro
 
         <section className={styles.infoGrid}>
           <div>
-            <div className={styles.eyebrow}>Information om produkter och besök</div>
-            <h2 className={styles.sectionTitle}>Allt du behöver veta om formgjutna hörselskydd och ljudutjämningssystem</h2>
+            <div className={styles.eyebrow}>
+              Information om produkter och besök
+            </div>
+            <h2 className={styles.sectionTitle}>
+              Allt du behöver veta om formgjutna hörselskydd och
+              ljudutjämningssystem
+            </h2>
             <p className={styles.sectionText}>
-              Här hittar du mer information om hur en avgjutning går till, om formgjutna hörselskydd och ljudutjämningssystem.
+              Här hittar du mer information om hur en avgjutning går till, om
+              formgjutna hörselskydd och ljudutjämningssystem.
             </p>
             <div className={styles.featureGrid}>
               {[
@@ -163,7 +191,11 @@ export default function Home({ featuredProducts, bluetoothProduct, soundfieldPro
                   label: "Om ljudutjämningssystem",
                 },
               ].map((item) => (
-                <Link key={item.href} href={item.href} className={styles.infoPill}>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={styles.infoPill}
+                >
                   {item.label}
                 </Link>
               ))}
@@ -171,28 +203,40 @@ export default function Home({ featuredProducts, bluetoothProduct, soundfieldPro
           </div>
 
           <div className={styles.placeholderCard}>
-            <div className={styles.placeholderBlock} style={{ position: "relative", overflow: "hidden" }}>
-              <Image src={earbudInEar} alt="Formgjutet hörselskydd i öra" fill className={styles.productImage} sizes="(max-width: 900px) 100vw, 50vw" />
+            <div
+              className={styles.placeholderBlock}
+              style={{ position: "relative", overflow: "hidden" }}
+            >
+              <Image
+                src={earbudInEar}
+                alt="Formgjutet hörselskydd i öra"
+                fill
+                className={styles.productImage}
+                sizes="(max-width: 900px) 100vw, 50vw"
+              />
             </div>
             <div className={styles.placeholderRow}>
               <div className={styles.placeholderTile}>
                 <strong>Skydd som passar dig</strong>
                 <span>
-                  Formgjutna hörselskydd anpassas efter örat för hög komfort och säker passform.
+                  Formgjutna hörselskydd anpassas efter örat för hög komfort och
+                  säker passform.
                 </span>
               </div>
 
               <div className={styles.placeholderTile}>
                 <strong>Bevarar viktiga ljud</strong>
                 <span>
-                  Skadligt buller dämpas samtidigt som tal och omgivningsljud kan uppfattas tydligt.
+                  Skadligt buller dämpas samtidigt som tal och omgivningsljud
+                  kan uppfattas tydligt.
                 </span>
               </div>
 
               <div className={styles.placeholderTile}>
                 <strong>Bättre ljudmiljö</strong>
                 <span>
-                  Ljudutjämningssystem gör tal tydligare och skapar bättre förutsättningar för koncentration.
+                  Ljudutjämningssystem gör tal tydligare och skapar bättre
+                  förutsättningar för koncentration.
                 </span>
               </div>
             </div>

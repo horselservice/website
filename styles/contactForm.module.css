@@ -42,7 +42,7 @@
 .contactInfoCard {
   padding: 1rem;
   border-radius: 22px;
-  background: rgba(124,58,237,0.08);
+  background: rgba(124, 58, 237, 0.08);
   color: var(--ink-soft);
   line-height: 1.7;
 }
@@ -89,7 +89,7 @@
 .textarea:focus {
   outline: none;
   border-color: var(--teal);
-  box-shadow: 0 0 0 4px rgba(45,212,191,0.15);
+  box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.15);
 }
 
 .formActions {
@@ -110,7 +110,10 @@
   background: #111111;
   color: white;
   border: 0;
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .darkButton:hover,

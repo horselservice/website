@@ -23,6 +23,8 @@ const productItems = [
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
+  const isAdminRoute = router.pathname.startsWith("/admin");
+
   const [isOpen, setIsOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
 
@@ -34,6 +36,15 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     closeMenus();
   }, [router.asPath]);
+
+  if (isAdminRoute) {
+    return (
+      <>
+        <ToastContainer />
+        <Component {...pageProps} />
+      </>
+    );
+  }
 
   return (
     <PriceProvider>
@@ -69,7 +80,11 @@ export default function App({ Component, pageProps }) {
                 {isProductsOpen ? (
                   <div className={styles.dropdownMenu}>
                     {productItems.map((item) => (
-                      <Link key={item.href} href={item.href} onClick={closeMenus}>
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={closeMenus}
+                      >
                         {item.label}
                       </Link>
                     ))}

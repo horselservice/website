@@ -25,7 +25,8 @@ export default function ProductHead({
 
             {text ? <p className={styles.introText}>{text}</p> : null}
 
-            {(primaryHref && primaryLabel) || (secondaryHref && secondaryLabel) ? (
+            {(primaryHref && primaryLabel) ||
+            (secondaryHref && secondaryLabel) ? (
               <div className={styles.buttonGroup}>
                 {primaryHref && primaryLabel ? (
                   <Link href={primaryHref} className={styles.primaryButton}>

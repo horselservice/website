@@ -20,7 +20,9 @@ export default function PageIntro({
         <div className={styles.contentGrid}>
           <div className={styles.textPanel}>
             {eyebrow ? <div className={styles.eyebrow}>{eyebrow}</div> : null}
-            <h1 className={compact ? styles.compactTitle : styles.pageTitle}>{title}</h1>
+            <h1 className={compact ? styles.compactTitle : styles.pageTitle}>
+              {title}
+            </h1>
             <p className={styles.introText}>{text}</p>
             {tags.length > 0 ? (
               <div className={styles.tagList}>

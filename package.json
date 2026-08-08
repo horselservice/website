@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "set NODE_ENV=production&& node server.js",
     "lint": "next lint",
-    "import:products": "node import/importProducts.mjs"
+    "import:products": "node import/importProducts.mjs",
+    "format": "prettier --write \"**/*.{js,jsx,css,json}\""
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "dotenv": "^17.4.2",
     "eslint": "^8.5.0",
     "eslint-config-next": "13.3.1",
-    "nock": "^13.3.1"
+    "nock": "^13.3.1",
+    "prettier": "^3.9.6"
   }
 }

@@ -42,7 +42,10 @@ export default function HomeVideo() {
       <div className={styles.overlay} />
 
       <div className={styles.content}>
-        <h1 className={styles.title}>Formgjutna hörselskydd och ljudutjämnings{"\u00AD"}system för alla miljöer</h1>
+        <h1 className={styles.title}>
+          Formgjutna hörselskydd och ljudutjämnings{"\u00AD"}system för alla
+          miljöer
+        </h1>
       </div>
 
       <button

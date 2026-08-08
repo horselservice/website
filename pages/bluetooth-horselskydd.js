@@ -20,15 +20,33 @@ export default function BluetoothProducts({ products }) {
     <>
       <Head>
         <title>Aktiva hörselskydd | Bluetooth och jakt i Växjö</title>
-        <meta name="description" content="Aktiva hörselskydd med elektronik och Bluetooth-lösningar för jakt, arbete och miljöer där du behöver skydd men ändå höra viktiga ljud." />
+        <meta
+          name="description"
+          content="Aktiva hörselskydd med elektronik och Bluetooth-lösningar för jakt, arbete och miljöer där du behöver skydd men ändå höra viktiga ljud."
+        />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://horselservice.se/bluetooth-horselskydd" />
+        <link
+          rel="canonical"
+          href="https://horselservice.se/bluetooth-horselskydd"
+        />
         <meta property="og:locale" content="sv_SE" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Aktiva hörselskydd | Bluetooth och jakt i Växjö" />
-        <meta property="og:description" content="Aktiva hörselskydd med elektronik och Bluetooth-lösningar för jakt, arbete och miljöer där du behöver skydd men ändå höra viktiga ljud." />
-        <meta property="og:url" content="https://horselservice.se/bluetooth-horselskydd" />
-        <meta property="og:image" content="https://horselservice.se/images/haactivepro.webp" />
+        <meta
+          property="og:title"
+          content="Aktiva hörselskydd | Bluetooth och jakt i Växjö"
+        />
+        <meta
+          property="og:description"
+          content="Aktiva hörselskydd med elektronik och Bluetooth-lösningar för jakt, arbete och miljöer där du behöver skydd men ändå höra viktiga ljud."
+        />
+        <meta
+          property="og:url"
+          content="https://horselservice.se/bluetooth-horselskydd"
+        />
+        <meta
+          property="og:image"
+          content="https://horselservice.se/images/haactivepro.webp"
+        />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
@@ -65,7 +83,9 @@ export default function BluetoothProducts({ products }) {
                 title={product.title}
                 description={product.description}
                 image={product.images?.[0]?.src ?? product.imgSrc}
-                imageAlt={product.images?.[0]?.alt ?? product.imgAlt ?? product.title}
+                imageAlt={
+                  product.images?.[0]?.alt ?? product.imgAlt ?? product.title
+                }
                 price={getDisplayPrice(product, customerType)}
                 badge="För jakt & arbete"
               />

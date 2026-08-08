@@ -5,8 +5,16 @@
   width: 100%;
   backdrop-filter: blur(18px);
   background:
-    radial-gradient(circle at top right, rgba(45, 212, 191, 0.08), transparent 22%),
-    radial-gradient(circle at bottom left, rgba(124, 58, 237, 0.16), transparent 28%),
+    radial-gradient(
+      circle at top right,
+      rgba(45, 212, 191, 0.08),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(124, 58, 237, 0.16),
+      transparent 28%
+    ),
     linear-gradient(145deg, #888888 0%, #361f50 45%, #050505 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.171);
 }

@@ -1,14 +1,20 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { getAllProductSlugs, getProductBySlug } from "../../lib/products/products";
+import {
+  getAllProductSlugs,
+  getProductBySlug,
+} from "../../lib/products/products";
 import { usePrice } from "../../context/priceContext";
 import { getDisplayPrice, getOfferPriceNumber } from "../../lib/pricing";
 import styles from "../../styles/site.module.css";
 
 export async function getStaticPaths() {
   const slugs = await getAllProductSlugs();
-  return { paths: slugs.map((slug) => ({ params: { slug } })), fallback: false };
+  return {
+    paths: slugs.map((slug) => ({ params: { slug } })),
+    fallback: false,
+  };
 }
 
 export async function getStaticProps({ params }) {
@@ -27,14 +33,26 @@ export default function ProductPage({ product }) {
       <Head>
         <title>{product.title} | Hörselservice</title>
         <meta name="description" content={product.description} />
-        <link rel="canonical" href={`https://horselservice.se/products/${product.slug}`} />
+        <link
+          rel="canonical"
+          href={`https://horselservice.se/products/${product.slug}`}
+        />
         <meta name="robots" content="index, follow" />
         <meta property="og:locale" content="sv_SE" />
         <meta property="og:type" content="product" />
-        <meta property="og:title" content={`${product.title} | Hörselservice`} />
+        <meta
+          property="og:title"
+          content={`${product.title} | Hörselservice`}
+        />
         <meta property="og:description" content={product.description} />
-        <meta property="og:url" content={`https://horselservice.se/products/${product.slug}`} />
-        <meta property="og:image" content={`https://horselservice.se${product.imgSrc}`} />
+        <meta
+          property="og:url"
+          content={`https://horselservice.se/products/${product.slug}`}
+        />
+        <meta
+          property="og:image"
+          content={`https://horselservice.se${product.imgSrc}`}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -77,7 +95,13 @@ export default function ProductPage({ product }) {
 
               <div className={styles.detailCard}>
                 <div className={styles.detailImage}>
-                  <Image src={product.imgSrc} alt={product.imgAlt} fill sizes="(max-width: 900px) 100vw, 50vw" className={styles.productImage} />
+                  <Image
+                    src={product.imgSrc}
+                    alt={product.imgAlt}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                    className={styles.productImage}
+                  />
                 </div>
                 <div className={styles.metaGrid}>
                   <div className={styles.metric}>
@@ -86,11 +110,15 @@ export default function ProductPage({ product }) {
                   </div>
                   <div className={styles.metric}>
                     <div className={styles.metricTitle}>Komfort</div>
-                    <div className={styles.productMeta}>Individuellt anpassad passform</div>
+                    <div className={styles.productMeta}>
+                      Individuellt anpassad passform
+                    </div>
                   </div>
                   <div className={styles.metric}>
                     <div className={styles.metricTitle}>Användning</div>
-                    <div className={styles.productMeta}>Anpassas efter miljö och behov</div>
+                    <div className={styles.productMeta}>
+                      Anpassas efter miljö och behov
+                    </div>
                   </div>
                 </div>
               </div>

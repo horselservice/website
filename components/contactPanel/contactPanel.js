@@ -9,9 +9,7 @@ export default function ContactPanel({
     <section className={styles.contactStrip}>
       <div className={styles.contactGrid}>
         <div>
-          <div className={styles.eyebrow}>
-            Kontakt
-          </div>
+          <div className={styles.eyebrow}>Kontakt</div>
           <h2 className={styles.sectionTitle}>{title}</h2>
           <p className={styles.infoText}>{text}</p>
           <div className={styles.buttonRow}>
@@ -28,7 +26,8 @@ export default function ContactPanel({
           <div className={styles.contactInfoList}>
             <div className={styles.contactInfoCard}>
               <strong>Personlig rådgivning</strong>
-              Vi guidar dig till rätt lösning utifrån miljö, användning och komfort.
+              Vi guidar dig till rätt lösning utifrån miljö, användning och
+              komfort.
             </div>
             <div className={styles.contactInfoCard}>
               <strong>För privatpersoner och verksamheter</strong>

@@ -6,12 +6,16 @@ export function PriceProvider({ children }) {
   const [customerType, setCustomerType] = useState("private"); // "private" | "business"
 
   useEffect(() => {
-    const saved = typeof window !== "undefined" ? localStorage.getItem("customerType") : null;
+    const saved =
+      typeof window !== "undefined"
+        ? localStorage.getItem("customerType")
+        : null;
     if (saved === "private" || saved === "business") setCustomerType(saved);
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined") localStorage.setItem("customerType", customerType);
+    if (typeof window !== "undefined")
+      localStorage.setItem("customerType", customerType);
   }, [customerType]);
 
   return (

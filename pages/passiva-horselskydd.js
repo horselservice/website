@@ -20,15 +20,33 @@ export default function Products({ products }) {
     <>
       <Head>
         <title>Formgjutna hörselskydd | Passiva hörselskydd i Växjö</title>
-        <meta name="description" content="Se Hörselservice utbud av passiva formgjutna hörselskydd för musik, jakt, industri, motorsport, bad och sömn." />
+        <meta
+          name="description"
+          content="Se Hörselservice utbud av passiva formgjutna hörselskydd för musik, jakt, industri, motorsport, bad och sömn."
+        />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://horselservice.se/passiva-horselskydd" />
+        <link
+          rel="canonical"
+          href="https://horselservice.se/passiva-horselskydd"
+        />
         <meta property="og:locale" content="sv_SE" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Formgjutna hörselskydd | Passiva hörselskydd i Växjö" />
-        <meta property="og:description" content="Se Hörselservice utbud av passiva formgjutna hörselskydd för musik, jakt, industri, motorsport, bad och sömn." />
-        <meta property="og:url" content="https://horselservice.se/passiva-horselskydd" />
-        <meta property="og:image" content="https://horselservice.se/images/passformHorselskydd.webp" />
+        <meta
+          property="og:title"
+          content="Formgjutna hörselskydd | Passiva hörselskydd i Växjö"
+        />
+        <meta
+          property="og:description"
+          content="Se Hörselservice utbud av passiva formgjutna hörselskydd för musik, jakt, industri, motorsport, bad och sömn."
+        />
+        <meta
+          property="og:url"
+          content="https://horselservice.se/passiva-horselskydd"
+        />
+        <meta
+          property="og:image"
+          content="https://horselservice.se/images/passformHorselskydd.webp"
+        />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
@@ -63,7 +81,9 @@ export default function Products({ products }) {
                 key={product.slug}
                 href={`/products/${product.slug}`}
                 title={product.title}
-                description={product.frontPageDescription ?? product.description}
+                description={
+                  product.frontPageDescription ?? product.description
+                }
                 image={product.imgSrc}
                 imageAlt={product.imgAlt}
                 price={getDisplayPrice(product, customerType)}

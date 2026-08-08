@@ -4,25 +4,21 @@ import { useRouter } from "next/router";
 
 import LoginForm from "../../components/admin/adminLogin/adminLogin";
 
-import {
-  createSupabaseBrowserClient,
-} from "../../lib/supabase/browserClient";
+import { createSupabaseBrowserClient } from "../../lib/supabase/browserClient";
 
 import styles from "../../styles/adminLogin.module.css";
 
 export default function AdminLoginPage() {
   const router = useRouter();
 
-  const [isCheckingSession, setIsCheckingSession] =
-    useState(true);
+  const [isCheckingSession, setIsCheckingSession] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
 
     async function checkSession() {
       try {
-        const supabase =
-          createSupabaseBrowserClient();
+        const supabase = createSupabaseBrowserClient();
 
         const {
           data: { session },
@@ -37,10 +33,7 @@ export default function AdminLoginPage() {
           return;
         }
       } catch (error) {
-        console.error(
-          "Could not check admin session:",
-          error
-        );
+        console.error("Could not check admin session:", error);
       }
 
       if (isMounted) {
@@ -58,42 +51,26 @@ export default function AdminLoginPage() {
   return (
     <>
       <Head>
-        <title>
-          Admininloggning | Hörselservice
-        </title>
+        <title>Admininloggning | Hörselservice</title>
 
         <meta
           name="description"
           content="Inloggning till administrativ portal."
         />
 
-        <meta
-          name="robots"
-          content="noindex, nofollow"
-        />
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
 
       <main className={styles.page}>
-        <section
-          className={styles.card}
-          aria-labelledby="admin-login-title"
-        >
-          <p className={styles.eyebrow}>
-            Administration
-          </p>
+        <section className={styles.card} aria-labelledby="admin-login-title">
+          <p className={styles.eyebrow}>Administration</p>
 
-          <h1
-            id="admin-login-title"
-            className={styles.title}
-          >
+          <h1 id="admin-login-title" className={styles.title}>
             Logga in
           </h1>
 
           {isCheckingSession ? (
-            <p
-              className={styles.description}
-              role="status"
-            >
+            <p className={styles.description} role="status">
               Kontrollerar inloggning...
             </p>
           ) : (

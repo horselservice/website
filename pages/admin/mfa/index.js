@@ -6,14 +6,9 @@ export default function AdminMfaPage() {
   return (
     <>
       <Head>
-        <title>
-          Verifiera inloggning | Hörselservice
-        </title>
+        <title>Verifiera inloggning | Hörselservice</title>
 
-        <meta
-          name="robots"
-          content="noindex, nofollow"
-        />
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
 
       <main>

@@ -35,7 +35,10 @@ export default function ContactInfoCard() {
           <div className={styles.placeholderTile}>
             <strong>E-post</strong>
             <span>
-              <a href="mailto:info@horselservice.se" className={styles.contactLink}>
+              <a
+                href="mailto:info@horselservice.se"
+                className={styles.contactLink}
+              >
                 info@horselservice.se
               </a>
             </span>
