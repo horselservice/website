@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-
 import { createSupabaseBrowserClient } from "../../../lib/supabase/browserClient";
+import styles from "../../../styles/mfaSetup.module.css";
 
 export default function MfaSetup() {
   const router = useRouter();
@@ -139,51 +139,63 @@ export default function MfaSetup() {
   }
 
   return (
-    <div>
-      <h2>Aktivera tvåstegsverifiering</h2>
-
-      <p>
+    <div className={styles.container}>
+      <p className={styles.instructions}>
         Skanna QR-koden med exempelvis Microsoft Authenticator eller Google
         Authenticator.
       </p>
 
       {qrCode ? (
-        <img
-          src={qrCode}
-          alt="QR-kod för tvåstegsverifiering"
-          width="220"
-          height="220"
-        />
+        <div className={styles.qrContainer}>
+          <img
+            className={styles.qrCode}
+            src={qrCode}
+            alt="QR-kod för tvåstegsverifiering"
+          />
+        </div>
       ) : null}
 
       {secret ? (
-        <div>
+        <div className={styles.secretContainer}>
           <p>
             Om du inte kan skanna QR-koden kan du skriva in denna kod manuellt:
           </p>
 
-          <code>{secret}</code>
+          <code className={styles.secret}>{secret}</code>
         </div>
       ) : null}
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="totp-setup-code">Kod från autentiseringsappen</label>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor="totp-setup-code">
+            Kod från autentiseringsappen
+          </label>
 
-        <input
-          id="totp-setup-code"
-          type="text"
-          inputMode="numeric"
-          autoComplete="one-time-code"
-          maxLength={6}
-          value={code}
-          onChange={(event) => setCode(event.target.value.replace(/\D/g, ""))}
+          <input
+            id="totp-setup-code"
+            className={styles.input}
+            type="text"
+            inputMode="numeric"
+            autoComplete="one-time-code"
+            maxLength={6}
+            value={code}
+            onChange={(event) => setCode(event.target.value.replace(/\D/g, ""))}
+            disabled={isVerifying}
+            required
+          />
+        </div>
+
+        {errorMessage ? (
+          <div className={styles.error} role="alert">
+            {errorMessage}
+          </div>
+        ) : null}
+
+        <button
+          type="submit"
+          className={styles.submitButton}
           disabled={isVerifying}
-          required
-        />
-
-        {errorMessage ? <p role="alert">{errorMessage}</p> : null}
-
-        <button type="submit" disabled={isVerifying}>
+        >
           {isVerifying ? "Verifierar..." : "Aktivera MFA"}
         </button>
       </form>

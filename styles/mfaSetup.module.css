@@ -1,3 +1,51 @@
+.container {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.instructions {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.6;
+}
+
+.qrContainer {
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.qrCode {
+  width: min(100%, 220px);
+  height: auto;
+  display: block;
+}
+
+.secretContainer {
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.secretContainer p {
+  margin: 0 0 0.65rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.5;
+}
+
+.secret {
+  display: block;
+  padding: 0.7rem 0.8rem;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
 .form {
   display: grid;
   gap: 1.25rem;
@@ -23,32 +71,20 @@
   background: rgba(5, 5, 5, 0.72);
   color: #fff;
   font: inherit;
+  font-size: 1.15rem;
+  letter-spacing: 0.18em;
+  text-align: center;
   outline: none;
   transition:
     border-color 160ms ease,
-    box-shadow 160ms ease,
-    background 160ms ease;
-}
-
-.input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.input:hover:not(:disabled) {
-  border-color: rgba(255, 255, 255, 0.28);
+    box-shadow 160ms ease;
 }
 
 .input:focus {
   border-color: var(--purple-soft);
-  background: rgba(5, 5, 5, 0.9);
   box-shadow:
     0 0 0 3px
     rgba(124, 58, 237, 0.22);
-}
-
-.input:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
 }
 
 .error {
@@ -71,6 +107,7 @@
       var(--purple),
       #9f67f4
     );
+
   color: #fff;
   font: inherit;
   font-weight: 800;
@@ -88,22 +125,18 @@
     rgba(124, 58, 237, 0.28);
 }
 
-.submitButton:active:not(:disabled) {
-  transform: translateY(0);
-}
-
 .submitButton:disabled {
   cursor: not-allowed;
   opacity: 0.6;
 }
 
-@media (max-width: 480px) {
-  .form {
-    gap: 1rem;
-  }
+.loading,
+.errorState {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  text-align: center;
+}
 
-  .input,
-  .submitButton {
-    min-height: 3rem;
-  }
+.errorState {
+  color: #fecaca;
 }

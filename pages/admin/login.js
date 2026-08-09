@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-
 import LoginForm from "../../components/admin/adminLogin/adminLogin";
-
 import { createSupabaseBrowserClient } from "../../lib/supabase/browserClient";
-
-import styles from "../../styles/adminLogin.module.css";
+import styles from "../../styles/adminLoginPage.module.css";
 
 export default function AdminLoginPage() {
   const router = useRouter();

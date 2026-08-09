@@ -1,0 +1,154 @@
+.editorForm {
+  display: grid;
+  gap: 1rem;
+}
+
+.section {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid #e3dfe8;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.heading {
+  margin-bottom: 1.5rem;
+}
+
+.heading h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.25rem;
+}
+
+.heading p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.field {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.field > span {
+  font-weight: 700;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid #d9d5df;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  outline: none;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--purple);
+  box-shadow:
+    0 0 0 3px
+    rgba(124, 58, 237, 0.12);
+}
+
+.field textarea {
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.field small {
+  color: var(--ink-soft);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.priceInput {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.priceInput input {
+  flex: 1;
+}
+
+.publishToggle {
+  padding: 1rem;
+  display: flex;
+  gap: 0.9rem;
+  border: 1px solid #e1dce8;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.publishToggle input {
+  width: 20px;
+  height: 20px;
+  margin-top: 0.2rem;
+}
+
+.publishToggle div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.publishToggle span {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.saveBar {
+  position: sticky;
+  bottom: 1rem;
+  z-index: 10;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #dcd6e4;
+  border-radius: 16px;
+  background:
+    rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 12px 35px
+    rgba(39, 27, 54, 0.12);
+  backdrop-filter: blur(12px);
+}
+
+.saveButton {
+  min-height: 44px;
+  padding: 0.7rem 1.1rem;
+  border: 0;
+  border-radius: 11px;
+  background: var(--purple);
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.saveButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+@media (max-width: 650px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .saveBar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .saveButton {
+    width: 100%;
+  }
+}

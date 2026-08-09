@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
 import { createSupabaseBrowserClient } from "../../../lib/supabase/browserClient";
+import styles from "../../../styles/mfaForm.module.css"
 
 export default function MfaForm() {
   const router = useRouter();
@@ -143,29 +143,38 @@ export default function MfaForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Tvåstegsverifiering</h2>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.field}>
+        <label className={styles.label} htmlFor="totp-code">
+          Verifieringskod
+        </label>
 
-      <p>Öppna din autentiseringsapp och ange den sexsiffriga koden.</p>
+        <input
+          id="totp-code"
+          className={styles.input}
+          type="text"
+          inputMode="numeric"
+          autoComplete="one-time-code"
+          maxLength={6}
+          value={code}
+          onChange={(event) => setCode(event.target.value.replace(/\D/g, ""))}
+          disabled={isVerifying}
+          autoFocus
+          required
+        />
+      </div>
 
-      <label htmlFor="totp-code">Verifieringskod</label>
+      {errorMessage ? (
+        <div className={styles.error} role="alert">
+          {errorMessage}
+        </div>
+      ) : null}
 
-      <input
-        id="totp-code"
-        type="text"
-        inputMode="numeric"
-        autoComplete="one-time-code"
-        maxLength={6}
-        value={code}
-        onChange={(event) => setCode(event.target.value.replace(/\D/g, ""))}
-        disabled={isVerifying}
-        autoFocus
-        required
-      />
-
-      {errorMessage ? <p role="alert">{errorMessage}</p> : null}
-
-      <button type="submit" disabled={isVerifying || !factorId}>
+      <button
+        type="submit"
+        className={styles.submitButton}
+        disabled={isVerifying || !factorId}
+      >
         {isVerifying ? "Verifierar..." : "Verifiera"}
       </button>
     </form>

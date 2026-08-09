@@ -23,19 +23,14 @@
   background: rgba(5, 5, 5, 0.72);
   color: #fff;
   font: inherit;
+  font-size: 1.15rem;
+  letter-spacing: 0.18em;
+  text-align: center;
   outline: none;
   transition:
     border-color 160ms ease,
     box-shadow 160ms ease,
     background 160ms ease;
-}
-
-.input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.input:hover:not(:disabled) {
-  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .input:focus {
@@ -71,6 +66,7 @@
       var(--purple),
       #9f67f4
     );
+
   color: #fff;
   font: inherit;
   font-weight: 800;
@@ -88,22 +84,19 @@
     rgba(124, 58, 237, 0.28);
 }
 
-.submitButton:active:not(:disabled) {
-  transform: translateY(0);
-}
-
 .submitButton:disabled {
   cursor: not-allowed;
   opacity: 0.6;
 }
 
+.status {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  text-align: center;
+}
+
 @media (max-width: 480px) {
   .form {
     gap: 1rem;
-  }
-
-  .input,
-  .submitButton {
-    min-height: 3rem;
   }
 }
