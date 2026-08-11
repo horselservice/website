@@ -3,14 +3,21 @@ import Image from "next/image";
 import ProductHead from "../components/productHead/productHead";
 import ProductCard from "../components/productCard/productCard";
 import ContactPanel from "../components/contactPanel/contactPanel";
-import { getSoundfieldProducts } from "../lib/ljudutjamningssystem/products";
+import { getProductsByCategory } from "../lib/products/productRepository";
 import { usePrice } from "../context/priceContext";
 import { getDisplayPrice } from "../lib/pricing";
 import styles from "../styles/site.module.css";
 
 export async function getStaticProps() {
-  const products = await getSoundfieldProducts();
-  return { props: { products } };
+  const products = await getProductsByCategory("ljudutjamningssystem");
+
+  return {
+    props: {
+      products,
+    },
+
+    revalidate: 60,
+  };
 }
 
 export default function SoundfieldProducts({ products }) {
@@ -86,7 +93,7 @@ Systemen har 30 dagars öppet köp, det är tillåtet att använda och testa pro
                 key={product.slug}
                 href={`/ljudutjamningssystem/${product.slug}`}
                 title={product.title}
-                description={product.description}
+                description={product.shortDescription}
                 image={product.imgSrcTwo}
                 imageAlt={product.imgAltTwo}
                 price={getDisplayPrice(product, customerType)}

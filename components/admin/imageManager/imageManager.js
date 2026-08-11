@@ -139,19 +139,12 @@ export default function ImageManager({
 
   async function handleMakePrimary(imageId) {
     try {
-      await setPrimaryProductImage({
+      const updatedImages = await setPrimaryProductImage({
         productId,
         imageId,
       });
 
-      setImages((currentImages) =>
-        sortImages(
-          currentImages.map((image) => ({
-            ...image,
-            isPrimary: image.id === imageId,
-          })),
-        ),
-      );
+      setImages(updatedImages);
 
       toast.success("Huvudbilden har ändrats.");
     } catch (error) {

@@ -255,13 +255,25 @@ test("huvudbild kan ändras och borttagning väljer nästa bild", async ({
     })
     .click();
 
-  await expect(secondCard.getByText("Huvudbild")).toBeVisible();
+  await expect(
+    secondCard.getByText("Huvudbild", {
+      exact: true,
+    }),
+  ).toBeVisible();
 
-  await expect(firstCard.getByText("Huvudbild")).toHaveCount(0);
+  await expect(
+    firstCard.getByText("Huvudbild", {
+      exact: true,
+    }),
+  ).toHaveCount(0);
 
   await deleteImage(page, secondCard);
 
-  await expect(firstCard.getByText("Huvudbild")).toBeVisible();
+  await expect(
+    firstCard.getByText("Huvudbild", {
+      exact: true,
+    }),
+  ).toBeVisible();
 
   await deleteImage(page, firstCard);
 });

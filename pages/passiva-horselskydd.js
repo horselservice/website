@@ -3,14 +3,21 @@ import Image from "next/image";
 import ProductHead from "../components/productHead/productHead";
 import ProductCard from "../components/productCard/productCard";
 import ContactPanel from "../components/contactPanel/contactPanel";
-import { getProducts } from "../lib/products/products";
+import { getProductsByCategory } from "../lib/products/productRepository";
 import { usePrice } from "../context/priceContext";
 import { getDisplayPrice } from "../lib/pricing";
 import styles from "../styles/site.module.css";
 
 export async function getStaticProps() {
-  const products = await getProducts();
-  return { props: { products } };
+  const products = await getProductsByCategory("passiva-horselskydd");
+
+  return {
+    props: {
+      products,
+    },
+
+    revalidate: 60,
+  };
 }
 
 export default function Products({ products }) {
@@ -82,7 +89,7 @@ export default function Products({ products }) {
                 href={`/products/${product.slug}`}
                 title={product.title}
                 description={
-                  product.frontPageDescription ?? product.description
+                  product.frontPageDescription ?? product.shortDescription
                 }
                 image={product.imgSrc}
                 imageAlt={product.imgAlt}

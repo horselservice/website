@@ -3,14 +3,21 @@ import Image from "next/image";
 import ProductHead from "../components/productHead/productHead";
 import ProductCard from "../components/productCard/productCard";
 import ContactPanel from "../components/contactPanel/contactPanel";
-import { getBluetoothProducts } from "../lib/bluetoothProducts/products";
+import { getProductsByCategory } from "../lib/products/productRepository";
 import { usePrice } from "../context/priceContext";
 import { getDisplayPrice } from "../lib/pricing";
 import styles from "../styles/site.module.css";
 
 export async function getStaticProps() {
-  const products = await getBluetoothProducts();
-  return { props: { products } };
+  const products = await getProductsByCategory("aktiva-horselskydd");
+
+  return {
+    props: {
+      products,
+    },
+
+    revalidate: 60,
+  };
 }
 
 export default function BluetoothProducts({ products }) {
@@ -81,7 +88,7 @@ export default function BluetoothProducts({ products }) {
                 key={product.slug}
                 href={`/bluetooth-products/${product.slug}`}
                 title={product.title}
-                description={product.description}
+                description={product.shortDescription}
                 image={product.images?.[0]?.src ?? product.imgSrc}
                 imageAlt={
                   product.images?.[0]?.alt ?? product.imgAlt ?? product.title

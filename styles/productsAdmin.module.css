@@ -1,7 +1,7 @@
 .toolbar {
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
   gap: 2rem;
   margin-bottom: 1.5rem;
 }

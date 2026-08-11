@@ -1,42 +1,91 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+
 import {
-  getAllProductSlugs,
   getProductBySlug,
-} from "../../lib/products/products";
+  getPublishedProductSlugsByCategory,
+} from "../../lib/products/productRepository";
+
+import { getAbsoluteUrl } from "../../lib/seo/url";
 import { usePrice } from "../../context/priceContext";
 import { getDisplayPrice, getOfferPriceNumber } from "../../lib/pricing";
 import styles from "../../styles/site.module.css";
 
+const CATEGORY_SLUG = "passiva-horselskydd";
+
+const SITE_URL = "https://horselservice.se";
+
 export async function getStaticPaths() {
-  const slugs = await getAllProductSlugs();
+  const slugs = await getPublishedProductSlugsByCategory(CATEGORY_SLUG);
+
   return {
-    paths: slugs.map((slug) => ({ params: { slug } })),
-    fallback: false,
+    paths: slugs.map((slug) => ({
+      params: {
+        slug,
+      },
+    })),
+
+    fallback: "blocking",
   };
 }
 
 export async function getStaticProps({ params }) {
   const product = await getProductBySlug(params.slug);
-  if (!product) return { notFound: true };
-  return { props: { product } };
+
+  if (!product || product.category?.slug !== CATEGORY_SLUG) {
+    return {
+      notFound: true,
+      revalidate: 60,
+    };
+  }
+
+  return {
+    props: {
+      product,
+    },
+
+    revalidate: 60,
+  };
 }
 
 export default function ProductPage({ product }) {
   const { customerType } = usePrice();
+
+  const imageSrc = product.imgSrc || "/images/logoHorselservice.webp";
+
+  const imageAlt = product.imgAlt || product.title;
+
+  const imageUrl = getAbsoluteUrl(imageSrc);
+
+  const productUrl = `${SITE_URL}/products/${product.slug}`;
+
   const displayPrice = getDisplayPrice(product, customerType);
+
   const schemaPrice = getOfferPriceNumber(product, "business");
+
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.title,
+    image: imageUrl ? [imageUrl] : [],
+    description: product.description,
+    url: productUrl,
+    offers: {
+      "@type": "Offer",
+      url: productUrl,
+      price: Number(schemaPrice).toFixed(2),
+      priceCurrency: "SEK",
+      availability: "https://schema.org/InStoreOnly",
+    },
+  };
 
   return (
     <>
       <Head>
         <title>{product.title} | Hörselservice</title>
-        <meta name="description" content={product.description} />
-        <link
-          rel="canonical"
-          href={`https://horselservice.se/products/${product.slug}`}
-        />
+        <meta name="description" content={product.shortDescription} />
+        <link rel="canonical" href={productUrl} />
         <meta name="robots" content="index, follow" />
         <meta property="og:locale" content="sv_SE" />
         <meta property="og:type" content="product" />
@@ -44,32 +93,15 @@ export default function ProductPage({ product }) {
           property="og:title"
           content={`${product.title} | Hörselservice`}
         />
-        <meta property="og:description" content={product.description} />
-        <meta
-          property="og:url"
-          content={`https://horselservice.se/products/${product.slug}`}
-        />
-        <meta
-          property="og:image"
-          content={`https://horselservice.se${product.imgSrc}`}
-        />
+        <meta property="og:description" content={product.shortDescription} />
+        <meta property="og:url" content={productUrl} />
+        {imageUrl ? <meta property="og:image" content={imageUrl} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org/",
-              "@type": "Product",
-              name: product.title,
-              image: [product.imgSrc],
-              description: product.description,
-              offers: {
-                "@type": "Offer",
-                url: `https://horselservice.se/products/${product.slug}`,
-                price: Number(schemaPrice).toFixed(2),
-                priceCurrency: "SEK",
-                availability: "https://schema.org/InStoreOnly",
-              },
-            }),
+            __html: JSON.stringify(productJsonLd).replace(/</g, "\\u003c"),
           }}
         />
       </Head>
@@ -77,18 +109,26 @@ export default function ProductPage({ product }) {
       <main className={styles.page}>
         <section className={styles.detailLayout}>
           <div className={styles.detailOverlay} />
+
           <div className={styles.detailInner}>
             <div className={styles.detailGrid}>
               <div>
-                <div className={styles.eyebrow}>Produkter</div>
+                <div className={styles.eyebrow}>Passiva hörselskydd</div>
+
                 <h1 className={styles.detailTitle}>{product.title}</h1>
+
                 <p className={styles.sectionText}>{product.description}</p>
+
                 <div className={styles.buttonRow}>
                   <Link href="/kontakt" className={styles.primaryButton}>
                     Kontakta oss
                   </Link>
-                  <Link href="/produkter" className={styles.secondaryButton}>
-                    Tillbaka till produkter
+
+                  <Link
+                    href="/passiva-horselskydd"
+                    className={styles.secondaryButton}
+                  >
+                    Tillbaka
                   </Link>
                 </div>
               </div>
@@ -96,28 +136,35 @@ export default function ProductPage({ product }) {
               <div className={styles.detailCard}>
                 <div className={styles.detailImage}>
                   <Image
-                    src={product.imgSrc}
-                    alt={product.imgAlt}
+                    src={imageSrc}
+                    alt={imageAlt}
                     fill
+                    priority
                     sizes="(max-width: 900px) 100vw, 50vw"
                     className={styles.productImage}
                   />
                 </div>
+
                 <div className={styles.metaGrid}>
                   <div className={styles.metric}>
                     <div className={styles.metricTitle}>Pris</div>
+
                     <div className={styles.productTitle}>{displayPrice}</div>
                   </div>
+
                   <div className={styles.metric}>
                     <div className={styles.metricTitle}>Komfort</div>
+
                     <div className={styles.productMeta}>
                       Individuellt anpassad passform
                     </div>
                   </div>
+
                   <div className={styles.metric}>
                     <div className={styles.metricTitle}>Användning</div>
+
                     <div className={styles.productMeta}>
-                      Anpassas efter miljö och behov
+                      {product.usageText || "Anpassas efter miljö och behov"}
                     </div>
                   </div>
                 </div>
