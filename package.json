@@ -9,7 +9,12 @@
     "start": "set NODE_ENV=production&& node server.js",
     "lint": "next lint",
     "import:products": "node import/importProducts.mjs",
-    "format": "prettier --write \"**/*.{js,jsx,css,json}\""
+    "format": "prettier --write \"**/*.{js,jsx,css,json}\"",
+    "test": "playwright test",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:report": "playwright show-report"
   },
   "repository": {
     "type": "git",
@@ -35,6 +40,7 @@
     "validator": "^13.9.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "dotenv": "^17.4.2",
     "eslint": "^8.5.0",
     "eslint-config-next": "13.3.1",
